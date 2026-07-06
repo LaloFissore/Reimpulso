@@ -106,6 +106,9 @@ tr.fin-row td { background:var(--fin-bg); color:var(--fin-text); opacity:.7; }
 .cell-input:hover:not(:focus) { border-color:var(--border2); }
 .cell-input.date-input { width:90px; font-size:11px; }
 .cell-input.mixed { border-color:var(--amber); background:#fffaf0; }
+.cell-tc-select { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); font-family:inherit; font-size:11px; font-weight:600; padding:3px 6px; outline:none; cursor:pointer; transition:all .15s; }
+.cell-tc-select:focus { border-color:var(--accent); background:#fff; }
+.cell-tc-select:hover { border-color:var(--border2); }
 
 .diff-badge { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; padding:2px 8px; border-radius:20px; display:inline-block; }
 .diff-zero { background:var(--green-l); color:var(--green); }
@@ -148,20 +151,69 @@ tr.fin-row td { background:var(--fin-bg); color:var(--fin-text); opacity:.7; }
 .cap-bar-bg { height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
 .cap-bar-fill { height:100%; border-radius:3px; transition:width .4s ease, background .3s; }
 
+/* GRUPO MADRE DE PAUTA */
+:root {
+  --pe-color: #7c3aed;
+  --pe-light: #f3e8ff;
+  --pe-brd:   #c4b5fd;
+  --pe-text:  #6d28d9;
+  --trad-color: var(--accent);
+  --trad-light: var(--accent-l);
+}
+.bloques-grid { display:flex; gap:6px; flex-wrap:wrap; }
+.grupo-madre {
+  display:flex; flex-direction:column; align-items:center; gap:2px;
+  width:52px; padding:5px 3px; border-radius:7px;
+  border:1px solid var(--border); background:var(--bg);
+  position:relative; transition:box-shadow .15s;
+}
+.grupo-madre:hover { box-shadow:0 0 0 2px var(--accent); }
+.grupo-madre.gm-selected { box-shadow:0 0 0 2px var(--accent); background:var(--accent-l); }
+.gm-label { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; color:var(--text); margin-bottom:1px; }
+.sub-bloque {
+  width:44px; border-radius:4px; padding:3px 4px;
+  display:flex; flex-direction:column; align-items:center; gap:1px;
+}
+.sub-label { font-size:8px; font-weight:700; text-transform:uppercase; letter-spacing:.4px; }
+.sub-seg   { font-family:'JetBrains Mono',monospace; font-size:9px; }
+.sub-bar   { width:36px; height:3px; background:var(--border); border-radius:2px; overflow:hidden; }
+.sub-bar-fill { height:100%; border-radius:2px; }
+/* PE sub-bloques */
+.sub-pe { background:var(--pe-light); border:1px solid var(--pe-brd); }
+.sub-pe .sub-label { color:var(--pe-text); }
+.sub-pe .sub-seg   { color:var(--pe-text); }
+.sub-pe .sub-bar-fill { background:var(--pe-color); }
+.sub-pe-activo { border-color:var(--pe-color); }
+.sub-sobre { border-color:var(--red)!important; }
+/* Tradicional sub-bloques */
+.sub-trad-empty { background:var(--surface); border:1px dashed var(--border2); }
+.sub-trad-fijo { background:var(--amber-l); border:1px solid #fde68a; }
+.sub-trad-fijo .sub-label { color:var(--amber); }
+.sub-trad-fijo .sub-seg   { color:var(--amber); }
+.sub-trad-fijo .sub-bar-fill { background:var(--amber); }
+.sub-trad-empty .sub-label { color:var(--muted2); }
+.sub-trad-empty .sub-seg   { color:var(--muted2); }
+.sub-trad-ok    { background:var(--accent-l); border:1px solid var(--key-brd); }
+.sub-trad-ok .sub-label  { color:var(--accent); }
+.sub-trad-ok .sub-seg    { color:var(--accent); }
+.sub-trad-ok .sub-bar-fill { background:var(--accent); }
+.sub-trad-warn  { background:var(--amber-l); border:1px solid #fde68a; }
+.sub-trad-warn .sub-label { color:var(--amber); }
+.sub-trad-warn .sub-seg   { color:var(--amber); }
+.sub-trad-warn .sub-bar-fill { background:var(--amber); }
+.sub-trad-sobre { background:var(--red-l); border:1px solid #fca5a5; }
+.sub-trad-sobre .sub-label { color:var(--red); }
+.sub-trad-sobre .sub-seg   { color:var(--red); }
+.sub-trad-sobre .sub-bar-fill { background:var(--red); }
+.sub-trad-empty .sub-bar-fill { background:var(--border2); }
+.gm-over { position:absolute; top:2px; right:2px; font-size:9px; color:var(--red); }
+.bloque-ciclo-sep { width:1px; background:var(--border); margin:0 2px; align-self:stretch; }
+
 /* BLOQUES */
 .bloque-panel { padding:10px 24px; border-bottom:1px solid var(--border); background:var(--surface); }
 .bloque-panel-title { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.6px; margin-bottom:8px; font-weight:600; }
 .bloques-grid { display:flex; gap:4px; flex-wrap:wrap; }
-.bloque-chip { display:flex; flex-direction:column; align-items:center; width:36px; padding:4px 2px; border-radius:5px; border:1px solid var(--border); background:var(--bg); font-size:10px; font-weight:600; font-family:'JetBrains Mono',monospace; }
-.bloque-chip .bl-letra { font-size:11px; font-weight:700; }
-.bloque-chip .bl-seg { font-size:9px; font-weight:400; color:var(--muted); margin-top:1px; }
-.bloque-chip .bl-bar { width:28px; height:3px; border-radius:2px; margin-top:3px; background:var(--border); overflow:hidden; }
-.bloque-chip .bl-bar-fill { height:100%; border-radius:2px; transition:width .3s; }
-.bloque-chip.ok { border-color:#c7d7ff; background:#f0f4ff; color:var(--accent); cursor:pointer; }
-.bloque-chip.warn { border-color:#fed7aa; background:#fff7ed; color:var(--amber); cursor:pointer; }
-.bloque-chip.over { border-color:#fca5a5; background:#fef2f2; color:var(--red); cursor:pointer; }
-.bloque-chip.empty { color:var(--muted2); }
-.bloque-chip.selected { outline:2px solid var(--accent); outline-offset:1px; }
+/* bloque-chip reemplazado por grupo-madre */
 .bloque-ciclo-sep { width:1px; background:var(--border); margin:0 2px; align-self:stretch; }
 
 .bloque-detail { display:none; margin:0 24px; background:#fff; border:1px solid var(--key-brd); border-top:none; border-radius:0 0 8px 8px; overflow:hidden; }
@@ -216,6 +268,16 @@ tr.fin-row td { background:var(--fin-bg); color:var(--fin-text); opacity:.7; }
 .buscar-empty { text-align:center; color:var(--muted); padding:40px; font-size:13px; }
 .buscar-sop-fin { opacity:.55; }
 .buscar-sop-finbadge { font-size:9px; color:var(--fin-text); background:var(--fin-bg); border:1px solid var(--border); padding:1px 6px; border-radius:20px; margin-left:6px; }
+
+/* PANEL DE ALERTAS INTEGRADO */
+.alerts-integrated { display:none; flex-direction:column; gap:4px; padding:10px 24px; background:#fffbf0; border-bottom:2px solid var(--amber); }
+.alerts-integrated.visible { display:flex; }
+.alerts-integrated-header { font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:.6px; margin-bottom:2px; }
+.alert-row { display:flex; align-items:center; gap:8px; font-size:12px; color:#92400e; padding:3px 0; }
+.alert-row.danger { color:var(--red); }
+.alert-row .alert-icon { font-size:13px; flex-shrink:0; }
+.alert-row .alert-msg { flex:1; }
+.alerts-integrated.cap-only { background:#fff8f0; border-bottom-color:var(--red); }
 
 /* status / alerts */
 #syncStatus { position:fixed; bottom:16px; left:20px; font-size:11px; font-weight:500; padding:5px 13px; border-radius:20px; z-index:50; transition:opacity .3s; box-shadow:0 1px 3px rgba(0,0,0,.1); opacity:0; }
@@ -280,6 +342,7 @@ tr.fin-row td { background:var(--fin-bg); color:var(--fin-text); opacity:.7; }
     <button class="btn-add" onclick="openOrden()">+ Nueva orden</button>
     <button class="btn-sec" onclick="sincronizarAsana()">↻ Sincronizar Asana</button>
     <button class="btn-sec" onclick="cargarDatosAsana()">⤓ Cargar datos de Asana (prueba)</button>
+    <button class="btn-sec" onclick="resetTotal()" style="color:var(--red);border-color:var(--red)" title="Borra todo y arranca de cero">↺ Reset</button>
     <button class="btn-sec" onclick="openConfig()">⚙ Prioritarios</button>
     <div class="search-wrap"><span class="search-icon">⌕</span><input class="search-input" id="searchOrd" placeholder="Buscar anunciante, campaña o ID…"></div>
     <div class="filter-wrap">
@@ -311,7 +374,7 @@ tr.fin-row td { background:var(--fin-bg); color:var(--fin-text); opacity:.7; }
   </div>
   <div class="fin-table-wrap" id="ordFinWrap">
     <table><thead><tr>
-      <th>Anunciante / Campaña</th><th>Tipo cliente</th><th>Tipo pauta</th><th>Soportes</th><th>Vigencia</th><th>Sal. cont.</th><th>Dur.</th><th></th>
+      <th>Anunciante / Campaña</th><th>Tipo cliente</th><th>Tipo pauta</th><th>Soportes</th><th>Inicio</th><th>Fecha fin</th><th>Sal. cont.</th><th>Dur.</th><th></th>
     </tr></thead><tbody id="ordFinBody"></tbody></table>
   </div>
 </div>
@@ -323,6 +386,12 @@ tr.fin-row td { background:var(--fin-bg); color:var(--fin-text); opacity:.7; }
     <select class="sop-select" id="sopSelect" onchange="onSopChange()"></select>
     <span class="sop-meta" id="sopMeta"></span>
   </div>
+  <!-- PANEL ALERTAS INTEGRADO -->
+  <div class="alerts-integrated" id="alertsIntegrated">
+    <div class="alerts-integrated-header" id="alertsIntegratedHeader">⚠ Conflictos en este soporte</div>
+    <div id="alertsIntegratedList"></div>
+  </div>
+
   <div class="global-panel">
     <div class="stat-card"><div class="stat-label">Seg pauta / prog</div><div class="stat-value accent" id="sStatOcupados">—</div><div class="stat-sub">de 720 seg</div></div>
     <div class="stat-card"><div class="stat-label">Seg libres / prog</div><div class="stat-value green" id="sStatLibres">—</div><div class="stat-sub">disponible</div></div>
@@ -336,7 +405,13 @@ tr.fin-row td { background:var(--fin-bg); color:var(--fin-text); opacity:.7; }
     <div class="cap-bar-bg"><div class="cap-bar-fill" id="sCapBar" style="width:0%"></div></div>
   </div>
   <div class="bloque-panel">
-    <div class="bloque-panel-title">Bloques de pauta — A–D ciclo 1 · E–H ciclo 2 · I–L ciclo 3 · M–P ciclo 4</div>
+    <div class="bloque-panel-title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+  <span>Grupos Madre de Pauta — A–D ciclo 1 · E–H ciclo 2 · I–L ciclo 3 · M–P ciclo 4</span>
+  <span style="display:flex;align-items:center;gap:4px;font-size:10px">
+    <span style="width:10px;height:10px;border-radius:2px;background:var(--pe-color);display:inline-block"></span>PE1/PE2 (máx 12s)
+    <span style="width:10px;height:10px;border-radius:2px;background:var(--accent);display:inline-block;margin-left:6px"></span>Tradicional (21–45s dinámico)
+  </span>
+</div>
     <div class="bloques-grid" id="sBloquesGrid"></div>
   </div>
   <div class="bloque-detail" id="sBloqueDetail">
@@ -366,7 +441,7 @@ tr.fin-row td { background:var(--fin-bg); color:var(--fin-text); opacity:.7; }
   </div>
   <div class="fin-table-wrap" id="sopFinWrap">
     <table><thead><tr>
-      <th>Anunciante / Campaña</th><th>Tipo cliente</th><th>Vigencia</th><th>Sal. cont.</th><th>Dur.</th><th>Salidas reales</th><th>Seg reales</th><th></th>
+      <th>Anunciante / Campaña</th><th>Tipo cliente</th><th>Inicio</th><th>Fecha fin</th><th>Sal. cont.</th><th>Dur.</th><th>Salidas reales</th><th>Seg reales</th><th></th>
     </tr></thead><tbody id="sopFinBody"></tbody></table>
   </div>
 </div>
@@ -395,6 +470,13 @@ tr.fin-row td { background:var(--fin-bg); color:var(--fin-text); opacity:.7; }
       <div class="form-field"><label>Sal. contratadas / hora</label><input type="number" id="fSal" min="0.5" step="0.5" placeholder="ej: 12"></div>
       <div class="form-field"><label>Duración spot (seg)</label><input type="number" id="fDur" min="1" max="120" placeholder="ej: 10"></div>
       <div class="form-field full"><label>Soportes donde se exhibe</label><div class="soportes-check" id="fSoportes"></div></div>
+      <div class="form-field full" style="flex-direction:row;align-items:center;gap:10px;background:var(--amber-l);border:1px solid #fde68a;border-radius:var(--radius-sm);padding:10px 12px">
+        <input type="checkbox" id="fEspacioFijo" style="width:16px;height:16px;accent-color:var(--amber);cursor:pointer;flex-shrink:0">
+        <div>
+          <label for="fEspacioFijo" style="cursor:pointer;font-size:12px;font-weight:600;color:var(--amber)">📌 Cliente con espacio fijo</label>
+          <div style="font-size:11px;color:#92400e;margin-top:2px">Sus bloques quedan reservados permanentemente. Campañas nuevas del mismo cliente usan los mismos bloques.</div>
+        </div>
+      </div>
     </div>
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeOrden()">Cancelar</button>
@@ -415,11 +497,16 @@ tr.fin-row td { background:var(--fin-bg); color:var(--fin-text); opacity:.7; }
 </div>
 
 <div id="syncStatus"></div>
-<div class="alerts-panel" id="alertsPanel"></div>
+
 
 <script>
 // ══════════════ CONFIGURACIÓN DE SOPORTES (agregar uno = una línea acá) ══════════════
-const PARAMS_BASE = { durProgSeg:934, pautaXProgSeg:720, progsXHora:4, bloquesXProg:16, capBloque:45, pautaXHoraSeg:2880, hsOn:15 };
+const PARAMS_BASE = { durProgSeg:934, pautaXProgSeg:720, progsXHora:4, bloquesXProg:16,
+  capBloque:45,        // seg totales por Grupo Madre
+  capPE:12,            // máximo por bloque PE (A1 o A2)
+  capTRAD_min:21,      // mínimo bloque Tradicional (cuando los 2 PE están llenos)
+  capTRAD_max:45,      // máximo bloque Tradicional (cuando los 2 PE están vacíos)
+  pautaXHoraSeg:2880, hsOn:15 };
 const SOPORTES = [
   { nombre:'Facal',        nombreCompleto:'Outdoor Facal',        hoja:'Facal',        asanaGid:'1207433461701747', ...PARAMS_BASE },
   { nombre:'Ramon Anador', nombreCompleto:'Outdoor Ramón Anador', hoja:'Ramon Anador', asanaGid:'1207433461701746', ...PARAMS_BASE },
@@ -430,14 +517,31 @@ const LETRAS = 'ABCDEFGHIJKLMNOP'.split('');
 
 const SCRIPT_URL = 'https://script.google.com/a/macros/reimpulso.uy/s/AKfycbwh7vXUAfW2XiuWnvSrbFEG-vRuU6KKzKMjNlQq_dhPvHeKvHhW3-EWQ1QltzKCI1HhYg/exec';
 
-// Datos reales de la sección Pauta Activada (Asana) — para pruebas. sal/dur son valores de muestra.
-const DATOS_ASANA = [{"grupoId":"asana_1215799267674332","soporte":"Ramon Anador","id":"1215799267674332","anun":"IMPO","camp":"Latu","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-23","ff":"2026-07-05","sal":8,"dur":10},{"grupoId":"asana_1215799267674332","soporte":"Facal","id":"1215799267674332","anun":"IMPO","camp":"Latu","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-23","ff":"2026-07-05","sal":8,"dur":10},{"grupoId":"asana_1215799267674332","soporte":"Reinaldo","id":"1215799267674332","anun":"IMPO","camp":"Latu","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-23","ff":"2026-07-05","sal":8,"dur":10},{"grupoId":"asana_1215864814394161","soporte":"Facal","id":"1215864814394161","anun":"Unilever","camp":"CIF Antimufa - Bloqueo","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-21","ff":"2026-06-21","sal":4,"dur":10},{"grupoId":"asana_1215806056600035","soporte":"Ramon Anador","id":"1215806056600035","anun":"IMPO","camp":"Municipio D","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-18","ff":"2026-07-02","sal":6,"dur":8},{"grupoId":"asana_1215806056600035","soporte":"Facal","id":"1215806056600035","anun":"IMPO","camp":"Municipio D","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-18","ff":"2026-07-02","sal":6,"dur":8},{"grupoId":"asana_1215806056600035","soporte":"Reinaldo","id":"1215806056600035","anun":"IMPO","camp":"Municipio D","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-18","ff":"2026-07-02","sal":6,"dur":8},{"grupoId":"asana_1215763951525300","soporte":"Ramon Anador","id":"1215763951525300","anun":"IMPO","camp":"Antel","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-16","ff":"2026-06-30","sal":12,"dur":12},{"grupoId":"asana_1215763951525300","soporte":"Facal","id":"1215763951525300","anun":"IMPO","camp":"Antel","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-16","ff":"2026-06-30","sal":12,"dur":12},{"grupoId":"asana_1215763951525300","soporte":"Reinaldo","id":"1215763951525300","anun":"IMPO","camp":"Antel","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-16","ff":"2026-06-30","sal":12,"dur":12},{"grupoId":"asana_1215720831033943","soporte":"Ramon Anador","id":"1215720831033943","anun":"Mercado Libre","camp":"PPS 3","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-15","ff":"2026-06-28","sal":8,"dur":10},{"grupoId":"asana_1215720831033943","soporte":"Facal","id":"1215720831033943","anun":"Mercado Libre","camp":"PPS 3","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-15","ff":"2026-06-28","sal":8,"dur":10},{"grupoId":"asana_1215720831033943","soporte":"Reinaldo","id":"1215720831033943","anun":"Mercado Libre","camp":"PPS 3","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-15","ff":"2026-06-28","sal":8,"dur":10},{"grupoId":"asana_1215733857411616","soporte":"Ramon Anador","id":"1215733857411616","anun":"Mercado Libre","camp":"Cuenta Remunerada","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-15","ff":"2026-08-09","sal":4,"dur":15},{"grupoId":"asana_1215733857411616","soporte":"Facal","id":"1215733857411616","anun":"Mercado Libre","camp":"Cuenta Remunerada","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-15","ff":"2026-08-09","sal":4,"dur":15},{"grupoId":"asana_1215733857411616","soporte":"Reinaldo","id":"1215733857411616","anun":"Mercado Libre","camp":"Cuenta Remunerada","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-15","ff":"2026-08-09","sal":4,"dur":15},{"grupoId":"asana_1215732561731725","soporte":"Ramon Anador","id":"1215732561731725","anun":"Pronto","camp":"Junio","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-15","ff":"2026-06-30","sal":16,"dur":10},{"grupoId":"asana_1215732561731725","soporte":"Facal","id":"1215732561731725","anun":"Pronto","camp":"Junio","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-15","ff":"2026-06-30","sal":16,"dur":10},{"grupoId":"asana_1215732561731725","soporte":"Reinaldo","id":"1215732561731725","anun":"Pronto","camp":"Junio","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-15","ff":"2026-06-30","sal":16,"dur":10},{"grupoId":"asana_1215637764099040","soporte":"Ramon Anador","id":"1215637764099040","anun":"Mercado Libre","camp":"MELI +","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-11","ff":"2026-07-19","sal":6,"dur":8},{"grupoId":"asana_1215637764099040","soporte":"Facal","id":"1215637764099040","anun":"Mercado Libre","camp":"MELI +","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-11","ff":"2026-07-19","sal":6,"dur":8},{"grupoId":"asana_1215637764099040","soporte":"Reinaldo","id":"1215637764099040","anun":"Mercado Libre","camp":"MELI +","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-11","ff":"2026-07-19","sal":6,"dur":8},{"grupoId":"asana_1215561768759648","soporte":"Ramon Anador","id":"1215561768759648","anun":"Nestle","camp":"Dolce Gusto","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-09","ff":"2026-06-14","sal":8,"dur":10},{"grupoId":"asana_1215561768759648","soporte":"Facal","id":"1215561768759648","anun":"Nestle","camp":"Dolce Gusto","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-09","ff":"2026-06-14","sal":8,"dur":10},{"grupoId":"asana_1215561768759648","soporte":"Reinaldo","id":"1215561768759648","anun":"Nestle","camp":"Dolce Gusto","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-09","ff":"2026-06-14","sal":8,"dur":10},{"grupoId":"asana_1215564390184565","soporte":"Facal","id":"1215564390184565","anun":"Paramount","camp":"Mundial","tipoCliente":"ESTANDAR","tipo":"PROGRAMATICA","fi":"2026-06-09","ff":"2026-06-21","sal":4,"dur":12},{"grupoId":"asana_1215541480181426","soporte":"Ramon Anador","id":"1215541480181426","anun":"Flow","camp":"Mundial","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-09","ff":"2026-06-22","sal":8,"dur":10},{"grupoId":"asana_1215511149138121","soporte":"Ramon Anador","id":"1215511149138121","anun":"McDonald’s","camp":"FIFA CUPS","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-09","ff":"2026-07-19","sal":4,"dur":10},{"grupoId":"asana_1215511149138121","soporte":"Facal","id":"1215511149138121","anun":"McDonald’s","camp":"FIFA CUPS","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-09","ff":"2026-07-19","sal":4,"dur":10},{"grupoId":"asana_1215566708412118","soporte":"Facal","id":"1215566708412118","anun":"Pronto","camp":"Préstamo para jubilados","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-09","ff":"2026-06-30","sal":6,"dur":8},{"grupoId":"asana_1215561704798931","soporte":"Facal","id":"1215561704798931","anun":"Passcard","camp":"Institucional","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-09","ff":"2026-07-09","sal":12,"dur":12},{"grupoId":"asana_1215506170216508","soporte":"Facal","id":"1215506170216508","anun":"Antel","camp":"Mundial","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-08","ff":"2026-06-30","sal":8,"dur":10},{"grupoId":"asana_1215506170216508","soporte":"Reinaldo","id":"1215506170216508","anun":"Antel","camp":"Mundial","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-08","ff":"2026-06-30","sal":8,"dur":10},{"grupoId":"asana_1214974395631201","soporte":"Ramon Anador","id":"1214974395631201","anun":"Pedidos Ya","camp":"Mundial","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-08","ff":"2026-07-13","sal":4,"dur":15},{"grupoId":"asana_1214974395631201","soporte":"Facal","id":"1214974395631201","anun":"Pedidos Ya","camp":"Mundial","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-08","ff":"2026-07-13","sal":4,"dur":15},{"grupoId":"asana_1214974395631201","soporte":"Reinaldo","id":"1214974395631201","anun":"Pedidos Ya","camp":"Mundial","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-08","ff":"2026-07-13","sal":4,"dur":15},{"grupoId":"asana_1215416789510532","soporte":"Ramon Anador","id":"1215416789510532","anun":"Directv","camp":"Copa mundial FIFA 2026","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-06","ff":"2026-06-30","sal":16,"dur":10},{"grupoId":"asana_1215416789510532","soporte":"Facal","id":"1215416789510532","anun":"Directv","camp":"Copa mundial FIFA 2026","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-06","ff":"2026-06-30","sal":16,"dur":10},{"grupoId":"asana_1215431065379934","soporte":"Ramon Anador","id":"1215431065379934","anun":"Cousa","camp":"Uruguay","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-05","ff":"2026-07-11","sal":6,"dur":8},{"grupoId":"asana_1215431065379934","soporte":"Facal","id":"1215431065379934","anun":"Cousa","camp":"Uruguay","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-05","ff":"2026-07-11","sal":6,"dur":8},{"grupoId":"asana_1215362846923325","soporte":"Ramon Anador","id":"1215362846923325","anun":"McDonald’s","camp":"Cajita Feliz Squishmallows FIFA","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-03","ff":"2026-07-07","sal":8,"dur":10},{"grupoId":"asana_1215362846923325","soporte":"Facal","id":"1215362846923325","anun":"McDonald’s","camp":"Cajita Feliz Squishmallows FIFA","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-03","ff":"2026-07-07","sal":8,"dur":10},{"grupoId":"asana_1215330351892879","soporte":"Ramon Anador","id":"1215330351892879","anun":"Grupo Gamma","camp":"Uruguay","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-02","ff":"2026-06-30","sal":4,"dur":12},{"grupoId":"asana_1215295797889901","soporte":"Ramon Anador","id":"1215295797889901","anun":"La Diaria","camp":"Branding","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-08-04","sal":8,"dur":10},{"grupoId":"asana_1215295797889901","soporte":"Facal","id":"1215295797889901","anun":"La Diaria","camp":"Branding","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-08-04","sal":8,"dur":10},{"grupoId":"asana_1215295797889901","soporte":"Reinaldo","id":"1215295797889901","anun":"La Diaria","camp":"Branding","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-08-04","sal":8,"dur":10},{"grupoId":"asana_1215314079689016","soporte":"Facal","id":"1215314079689016","anun":"Visa","camp":"Fifa During","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-07-19","sal":4,"dur":10},{"grupoId":"asana_1215168312705913","soporte":"Ramon Anador","id":"1215168312705913","anun":"Ducsa","camp":"Cargá y viajá","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-08-16","sal":6,"dur":8},{"grupoId":"asana_1215168312705913","soporte":"Facal","id":"1215168312705913","anun":"Ducsa","camp":"Cargá y viajá","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-08-16","sal":6,"dur":8},{"grupoId":"asana_1215168312705913","soporte":"Reinaldo","id":"1215168312705913","anun":"Ducsa","camp":"Cargá y viajá","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-08-16","sal":6,"dur":8},{"grupoId":"asana_1215147130839095","soporte":"Facal","id":"1215147130839095","anun":"Toc Toc","camp":"Ciberlunes","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-06-08","sal":12,"dur":12},{"grupoId":"asana_1215243448002335","soporte":"Ramon Anador","id":"1215243448002335","anun":"Nestle","camp":"Corporate 50 Aniversario","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-07-15","sal":8,"dur":10},{"grupoId":"asana_1215243448002335","soporte":"Facal","id":"1215243448002335","anun":"Nestle","camp":"Corporate 50 Aniversario","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-07-15","sal":8,"dur":10},{"grupoId":"asana_1215243448002335","soporte":"Reinaldo","id":"1215243448002335","anun":"Nestle","camp":"Corporate 50 Aniversario","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-07-15","sal":8,"dur":10},{"grupoId":"asana_1215248971756441","soporte":"Ramon Anador","id":"1215248971756441","anun":"Stienda","camp":"Ciberlunes","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-06-07","sal":4,"dur":15},{"grupoId":"asana_1215248971756441","soporte":"Facal","id":"1215248971756441","anun":"Stienda","camp":"Ciberlunes","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-06-07","sal":4,"dur":15},{"grupoId":"asana_1215248971756441","soporte":"Reinaldo","id":"1215248971756441","anun":"Stienda","camp":"Ciberlunes","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-06-07","sal":4,"dur":15},{"grupoId":"asana_1215146213338237","soporte":"Ramon Anador","id":"1215146213338237","anun":"IMPO","camp":"Ministerio de ambiente","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-30","ff":"2026-06-13","sal":16,"dur":10},{"grupoId":"asana_1215146213338237","soporte":"Facal","id":"1215146213338237","anun":"IMPO","camp":"Ministerio de ambiente","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-30","ff":"2026-06-13","sal":16,"dur":10},{"grupoId":"asana_1215146213338237","soporte":"Reinaldo","id":"1215146213338237","anun":"IMPO","camp":"Ministerio de ambiente","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-30","ff":"2026-06-13","sal":16,"dur":10},{"grupoId":"asana_1215313214458224","soporte":"Ramon Anador","id":"1215313214458224","anun":"CEDU","camp":"Ciberlunes , Junio","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-05-29","ff":"2026-06-03","sal":6,"dur":8},{"grupoId":"asana_1215313214458224","soporte":"Facal","id":"1215313214458224","anun":"CEDU","camp":"Ciberlunes , Junio","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-05-29","ff":"2026-06-03","sal":6,"dur":8},{"grupoId":"asana_1215313214458224","soporte":"Reinaldo","id":"1215313214458224","anun":"CEDU","camp":"Ciberlunes , Junio","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-05-29","ff":"2026-06-03","sal":6,"dur":8},{"grupoId":"asana_1214948058637121","soporte":"Ramon Anador","id":"1214948058637121","anun":"Mercado Libre","camp":"CIBERLUNES","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-05-25","ff":"2026-06-08","sal":8,"dur":10},{"grupoId":"asana_1214948058637121","soporte":"Facal","id":"1214948058637121","anun":"Mercado Libre","camp":"CIBERLUNES","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-05-25","ff":"2026-06-08","sal":8,"dur":10},{"grupoId":"asana_1214948058637121","soporte":"Reinaldo","id":"1214948058637121","anun":"Mercado Libre","camp":"CIBERLUNES","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-05-25","ff":"2026-06-08","sal":8,"dur":10},{"grupoId":"asana_1215119396934837","soporte":"Facal","id":"1215119396934837","anun":"Alcance","camp":"Institucional","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-25","ff":"2026-11-08","sal":4,"dur":12},{"grupoId":"asana_1215105599243966","soporte":"Ramon Anador","id":"1215105599243966","anun":"Tata","camp":"Aniversario","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-25","ff":"2026-06-10","sal":8,"dur":10},{"grupoId":"asana_1215105599243966","soporte":"Facal","id":"1215105599243966","anun":"Tata","camp":"Aniversario","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-25","ff":"2026-06-10","sal":8,"dur":10},{"grupoId":"asana_1215105599243966","soporte":"Reinaldo","id":"1215105599243966","anun":"Tata","camp":"Aniversario","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-25","ff":"2026-06-10","sal":8,"dur":10},{"grupoId":"asana_1215027629401831","soporte":"Ramon Anador","id":"1215027629401831","anun":"Nestle","camp":"El Chana","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-05-21","ff":"2026-06-30","sal":4,"dur":10},{"grupoId":"asana_1215027629401831","soporte":"Facal","id":"1215027629401831","anun":"Nestle","camp":"El Chana","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-05-21","ff":"2026-06-30","sal":4,"dur":10},{"grupoId":"asana_1215027629401831","soporte":"Reinaldo","id":"1215027629401831","anun":"Nestle","camp":"El Chana","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-05-21","ff":"2026-06-30","sal":4,"dur":10},{"grupoId":"asana_1215038031171082","soporte":"Ramon Anador","id":"1215038031171082","anun":"Tata","camp":"Oca","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-21","ff":"2026-05-31","sal":6,"dur":8},{"grupoId":"asana_1215038031171082","soporte":"Facal","id":"1215038031171082","anun":"Tata","camp":"Oca","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-21","ff":"2026-05-31","sal":6,"dur":8},{"grupoId":"asana_1215038031171082","soporte":"Reinaldo","id":"1215038031171082","anun":"Tata","camp":"Oca","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-21","ff":"2026-05-31","sal":6,"dur":8},{"grupoId":"asana_1214748009461676","soporte":"Facal","id":"1214748009461676","anun":"Desaparecidos","camp":"Mes de la memoria","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-20","ff":"2026-05-20","sal":12,"dur":12},{"grupoId":"asana_1214934172078859","soporte":"Facal","id":"1214934172078859","anun":"Loreal","camp":"ELVIVE COLLAGEN LIFTER SERUM","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-19","ff":"2026-08-10","sal":8,"dur":10},{"grupoId":"asana_1214910091079603","soporte":"Ramon Anador","id":"1214910091079603","anun":"McDonald’s","camp":"Criollo y Palta","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-18","ff":"2026-06-17","sal":4,"dur":15},{"grupoId":"asana_1214910091079603","soporte":"Facal","id":"1214910091079603","anun":"McDonald’s","camp":"Criollo y Palta","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-18","ff":"2026-06-17","sal":4,"dur":15},{"grupoId":"asana_1214843611301180","soporte":"Ramon Anador","id":"1214843611301180","anun":"Tienda Inglesa","camp":"Mundialista","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-18","ff":"2026-05-24","sal":16,"dur":10},{"grupoId":"asana_1214843611301180","soporte":"Facal","id":"1214843611301180","anun":"Tienda Inglesa","camp":"Mundialista","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-18","ff":"2026-05-24","sal":16,"dur":10},{"grupoId":"asana_1214740253323931","soporte":"Ramon Anador","id":"1214740253323931","anun":"IMPO","camp":"Antel","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-14","ff":"2026-05-28","sal":6,"dur":8},{"grupoId":"asana_1214740253323931","soporte":"Facal","id":"1214740253323931","anun":"IMPO","camp":"Antel","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-14","ff":"2026-05-28","sal":6,"dur":8},{"grupoId":"asana_1214740253323931","soporte":"Reinaldo","id":"1214740253323931","anun":"IMPO","camp":"Antel","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-14","ff":"2026-05-28","sal":6,"dur":8},{"grupoId":"asana_1214744124731712","soporte":"Facal","id":"1214744124731712","anun":"Toc Toc","camp":"Bubba","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-12","ff":"2026-05-18","sal":8,"dur":10},{"grupoId":"asana_1214613351492123","soporte":"Ramon Anador","id":"1214613351492123","anun":"Disa","camp":"Promo pelotas","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-07","ff":"2026-06-05","sal":4,"dur":12},{"grupoId":"asana_1214610938015815","soporte":"Facal","id":"1214610938015815","anun":"Directv","camp":"Uruguay","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-07","ff":"2026-06-05","sal":8,"dur":10},{"grupoId":"asana_1214512489535965","soporte":"Facal","id":"1214512489535965","anun":"Toc Toc","camp":"Aruba","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-05","ff":"2026-05-17","sal":4,"dur":10},{"grupoId":"asana_1214506007371819","soporte":"Ramon Anador","id":"1214506007371819","anun":"Prosegur","camp":"Institucional","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-04","ff":"2026-05-31","sal":6,"dur":8},{"grupoId":"asana_1214506007371819","soporte":"Reinaldo","id":"1214506007371819","anun":"Prosegur","camp":"Institucional","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-04","ff":"2026-05-31","sal":6,"dur":8},{"grupoId":"asana_1214202968111844","soporte":"Ramon Anador","id":"1214202968111844","anun":"IMPO","camp":"Latu","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-02","ff":"2026-05-16","sal":12,"dur":12},{"grupoId":"asana_1214202968111844","soporte":"Facal","id":"1214202968111844","anun":"IMPO","camp":"Latu","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-02","ff":"2026-05-16","sal":12,"dur":12},{"grupoId":"asana_1214202968111844","soporte":"Reinaldo","id":"1214202968111844","anun":"IMPO","camp":"Latu","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-02","ff":"2026-05-16","sal":12,"dur":12},{"grupoId":"asana_1214437609374726","soporte":"Facal","id":"1214437609374726","anun":"Equifax","camp":"Más tiempo","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-02","ff":"2026-05-31","sal":8,"dur":10},{"grupoId":"asana_1214392280205339","soporte":"Ramon Anador","id":"1214392280205339","anun":"Pronto","camp":"0% para todos","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-01","ff":"2026-05-31","sal":4,"dur":15},{"grupoId":"asana_1214392280205339","soporte":"Facal","id":"1214392280205339","anun":"Pronto","camp":"0% para todos","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-01","ff":"2026-05-31","sal":4,"dur":15},{"grupoId":"asana_1214392280205339","soporte":"Reinaldo","id":"1214392280205339","anun":"Pronto","camp":"0% para todos","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-05-01","ff":"2026-05-31","sal":4,"dur":15},{"grupoId":"asana_1214434968554477","soporte":"Ramon Anador","id":"1214434968554477","anun":"BBVA","camp":"DIA DE LA MADRE","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-30","ff":"2026-05-10","sal":16,"dur":10},{"grupoId":"asana_1214434968554477","soporte":"Facal","id":"1214434968554477","anun":"BBVA","camp":"DIA DE LA MADRE","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-30","ff":"2026-05-10","sal":16,"dur":10},{"grupoId":"asana_1214434968554477","soporte":"Reinaldo","id":"1214434968554477","anun":"BBVA","camp":"DIA DE LA MADRE","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-30","ff":"2026-05-10","sal":16,"dur":10},{"grupoId":"asana_1214397192144358","soporte":"Ramon Anador","id":"1214397192144358","anun":"Tata","camp":"Día del trabajador","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-29","ff":"2026-04-30","sal":6,"dur":8},{"grupoId":"asana_1214397192144358","soporte":"Facal","id":"1214397192144358","anun":"Tata","camp":"Día del trabajador","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-29","ff":"2026-04-30","sal":6,"dur":8},{"grupoId":"asana_1214397192144358","soporte":"Reinaldo","id":"1214397192144358","anun":"Tata","camp":"Día del trabajador","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-29","ff":"2026-04-30","sal":6,"dur":8},{"grupoId":"asana_1214357908594283","soporte":"Ramon Anador","id":"1214357908594283","anun":"McDonald’s","camp":"Nuevos Precios Postres","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-28","ff":"2026-05-31","sal":8,"dur":10},{"grupoId":"asana_1214357908594283","soporte":"Facal","id":"1214357908594283","anun":"McDonald’s","camp":"Nuevos Precios Postres","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-28","ff":"2026-05-31","sal":8,"dur":10},{"grupoId":"asana_1214357628706459","soporte":"Ramon Anador","id":"1214357628706459","anun":"McDonald’s","camp":"CF Stranger Things","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-28","ff":"2026-06-02","sal":4,"dur":12},{"grupoId":"asana_1214357628706459","soporte":"Facal","id":"1214357628706459","anun":"McDonald’s","camp":"CF Stranger Things","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-28","ff":"2026-06-02","sal":4,"dur":12},{"grupoId":"asana_1214318243185596","soporte":"Ramon Anador","id":"1214318243185596","anun":"Tata","camp":"Ganar Ganar","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-28","ff":"2026-05-14","sal":8,"dur":10},{"grupoId":"asana_1214318243185596","soporte":"Reinaldo","id":"1214318243185596","anun":"Tata","camp":"Ganar Ganar","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-28","ff":"2026-05-14","sal":8,"dur":10},{"grupoId":"asana_1214397636154913","soporte":"Ramon Anador","id":"1214397636154913","anun":"Mercado Libre","camp":"DDM","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-27","ff":"2026-05-10","sal":4,"dur":10},{"grupoId":"asana_1214397636154913","soporte":"Facal","id":"1214397636154913","anun":"Mercado Libre","camp":"DDM","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-27","ff":"2026-05-10","sal":4,"dur":10},{"grupoId":"asana_1214397636154913","soporte":"Reinaldo","id":"1214397636154913","anun":"Mercado Libre","camp":"DDM","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-27","ff":"2026-05-10","sal":4,"dur":10},{"grupoId":"asana_1214240050394120","soporte":"Facal","id":"1214240050394120","anun":"Afap","camp":"Institucional","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-27","ff":"2026-05-31","sal":6,"dur":8},{"grupoId":"asana_1214260331937962","soporte":"Facal","id":"1214260331937962","anun":"Renner","camp":"Día de la madre","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-26","ff":"2026-05-10","sal":12,"dur":12},{"grupoId":"asana_1214200167662596","soporte":"Facal","id":"1214200167662596","anun":"Portones Mágicos","camp":"Branding","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-23","ff":"2026-05-13","sal":8,"dur":10},{"grupoId":"asana_1214150840398737","soporte":"Ramon Anador","id":"1214150840398737","anun":"Tigo","camp":"Hola Uruguay 2da activación","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-22","ff":"2026-07-07","sal":4,"dur":15},{"grupoId":"asana_1214150840398737","soporte":"Facal","id":"1214150840398737","anun":"Tigo","camp":"Hola Uruguay 2da activación","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-22","ff":"2026-07-07","sal":4,"dur":15},{"grupoId":"asana_1214150840398737","soporte":"Reinaldo","id":"1214150840398737","anun":"Tigo","camp":"Hola Uruguay 2da activación","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-22","ff":"2026-07-07","sal":4,"dur":15},{"grupoId":"asana_1214117418163724","soporte":"Facal","id":"1214117418163724","anun":"Toc Toc","camp":"Travel Fest","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-17","ff":"2026-04-24","sal":16,"dur":10},{"grupoId":"asana_1214196844833892","soporte":"Ramon Anador","id":"1214196844833892","anun":"Mercado Libre","camp":"Belleza Libre","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-16","ff":"2026-04-30","sal":6,"dur":8},{"grupoId":"asana_1214196844833892","soporte":"Facal","id":"1214196844833892","anun":"Mercado Libre","camp":"Belleza Libre","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-16","ff":"2026-04-30","sal":6,"dur":8},{"grupoId":"asana_1214196844833892","soporte":"Reinaldo","id":"1214196844833892","anun":"Mercado Libre","camp":"Belleza Libre","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-16","ff":"2026-04-30","sal":6,"dur":8},{"grupoId":"asana_1214066349658208","soporte":"Ramon Anador","id":"1214066349658208","anun":"McDonald’s","camp":"Mundialistas","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-15","ff":"2026-07-28","sal":8,"dur":10},{"grupoId":"asana_1214066349658208","soporte":"Facal","id":"1214066349658208","anun":"McDonald’s","camp":"Mundialistas","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-15","ff":"2026-07-28","sal":8,"dur":10},{"grupoId":"asana_1214065696786380","soporte":"Ramon Anador","id":"1214065696786380","anun":"Tigo","camp":"Hola Uruguay","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-15","ff":"2026-04-23","sal":4,"dur":12},{"grupoId":"asana_1214065696786380","soporte":"Facal","id":"1214065696786380","anun":"Tigo","camp":"Hola Uruguay","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-15","ff":"2026-04-23","sal":4,"dur":12},{"grupoId":"asana_1214065696786380","soporte":"Reinaldo","id":"1214065696786380","anun":"Tigo","camp":"Hola Uruguay","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-15","ff":"2026-04-23","sal":4,"dur":12},{"grupoId":"asana_1214043461205812","soporte":"Ramon Anador","id":"1214043461205812","anun":"Mercado Libre","camp":"Lanzamiento Point","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-13","ff":"2026-05-10","sal":8,"dur":10},{"grupoId":"asana_1214043461205812","soporte":"Facal","id":"1214043461205812","anun":"Mercado Libre","camp":"Lanzamiento Point","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-13","ff":"2026-05-10","sal":8,"dur":10},{"grupoId":"asana_1214043461205812","soporte":"Reinaldo","id":"1214043461205812","anun":"Mercado Libre","camp":"Lanzamiento Point","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-13","ff":"2026-05-10","sal":8,"dur":10},{"grupoId":"asana_1214042667290180","soporte":"Ramon Anador","id":"1214042667290180","anun":"Mercado Libre","camp":"PPS 1","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-13","ff":"2026-04-26","sal":4,"dur":10},{"grupoId":"asana_1214042667290180","soporte":"Facal","id":"1214042667290180","anun":"Mercado Libre","camp":"PPS 1","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-13","ff":"2026-04-26","sal":4,"dur":10},{"grupoId":"asana_1214042667290180","soporte":"Reinaldo","id":"1214042667290180","anun":"Mercado Libre","camp":"PPS 1","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-13","ff":"2026-04-26","sal":4,"dur":10},{"grupoId":"asana_1214051577977692","soporte":"Facal","id":"1214051577977692","anun":"Unilever","camp":"Sedal Spicy","tipoCliente":"ESTANDAR","tipo":"PROGRAMATICA","fi":"2026-04-13","ff":"2026-04-30","sal":6,"dur":8},{"grupoId":"asana_1213982657529333","soporte":"Facal","id":"1213982657529333","anun":"Toc Toc","camp":"Palladium TRS","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-04-08","ff":"2026-04-16","sal":12,"dur":12},{"grupoId":"asana_1213961025068058","soporte":"Ramon Anador","id":"1213961025068058","anun":"Colgate","camp":"Color Correct","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-06","ff":"2026-05-05","sal":8,"dur":10},{"grupoId":"asana_1213961025068058","soporte":"Facal","id":"1213961025068058","anun":"Colgate","camp":"Color Correct","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-04-06","ff":"2026-05-05","sal":8,"dur":10}];
+// Datos reales de la sección Pauta Activada (Asana) — 16 órdenes vigentes hoy.
+const DATOS_ASANA = [{"grupoId":"mc_fijo_grupo","soporte":"Ramon Anador","id":"MC_FIJO","anun":"McDonald's","camp":"Espacio fijo anual","tipoCliente":"TOP","tipo":"TRADICIONAL","fi":"2026-06-09","ff":"","sal":16,"dur":10,"espacioFijo":true},{"grupoId":"mc_fijo_grupo","soporte":"Facal","id":"MC_FIJO","anun":"McDonald's","camp":"Espacio fijo anual","tipoCliente":"TOP","tipo":"TRADICIONAL","fi":"2026-06-09","ff":"","sal":16,"dur":10,"espacioFijo":true},{"grupoId":"asana_1216249013669413","soporte":"Facal","id":"1216249013669413","anun":"IMM","camp":"Estacionamiento Tarifado","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-07-03","ff":"2026-09-30","sal":15.0,"dur":10.0},{"grupoId":"asana_1216195564299295","soporte":"Facal","id":"1216195564299295","anun":"Tienda Inglesa","camp":"Fiesta del Vino Develación","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-07-01","ff":"2026-07-19","sal":4,"dur":10.0},{"grupoId":"asana_1216215767104221","soporte":"Ramon Anador","id":"1216215767104221","anun":"ITAÚ","camp":"Vs competencia","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-07-01","ff":"2026-08-30","sal":15.0,"dur":10.0},{"grupoId":"asana_1216215767104221","soporte":"Facal","id":"1216215767104221","anun":"ITAÚ","camp":"Vs competencia","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-07-01","ff":"2026-08-30","sal":15.0,"dur":10.0},{"grupoId":"asana_1216215767104221","soporte":"Reinaldo","id":"1216215767104221","anun":"ITAÚ","camp":"Vs competencia","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-07-01","ff":"2026-08-30","sal":15.0,"dur":10.0},{"grupoId":"asana_1216119767752955","soporte":"Facal","id":"1216119767752955","anun":"Canal 4","camp":"Escape Perfecto","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-29","ff":"2026-10-26","sal":12,"dur":10.0},{"grupoId":"asana_1216119767752955","soporte":"Reinaldo","id":"1216119767752955","anun":"Canal 4","camp":"Escape Perfecto","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-29","ff":"2026-10-26","sal":12,"dur":10.0},{"grupoId":"asana_1215733857411616","soporte":"Ramon Anador","id":"1215733857411616","anun":"Mercado Libre","camp":"Cuenta Remunerada","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-15","ff":"2026-08-09","sal":8,"dur":10},{"grupoId":"asana_1215733857411616","soporte":"Facal","id":"1215733857411616","anun":"Mercado Libre","camp":"Cuenta Remunerada","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-15","ff":"2026-08-09","sal":8,"dur":10},{"grupoId":"asana_1215733857411616","soporte":"Reinaldo","id":"1215733857411616","anun":"Mercado Libre","camp":"Cuenta Remunerada","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-15","ff":"2026-08-09","sal":8,"dur":10},{"grupoId":"asana_1215637764099040","soporte":"Ramon Anador","id":"1215637764099040","anun":"Mercado Libre","camp":"MELI +","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-11","ff":"2026-07-19","sal":4,"dur":15},{"grupoId":"asana_1215637764099040","soporte":"Facal","id":"1215637764099040","anun":"Mercado Libre","camp":"MELI +","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-11","ff":"2026-07-19","sal":4,"dur":15},{"grupoId":"asana_1215637764099040","soporte":"Reinaldo","id":"1215637764099040","anun":"Mercado Libre","camp":"MELI +","tipoCliente":"ESTANDAR","tipo":"PLACE EXCHANGE","fi":"2026-06-11","ff":"2026-07-19","sal":4,"dur":15},{"grupoId":"asana_1215732561731725","soporte":"Ramon Anador","id":"1215732561731725","anun":"Pronto","camp":"Junio","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-15","ff":"2026-08-31","sal":16,"dur":10},{"grupoId":"asana_1215732561731725","soporte":"Facal","id":"1215732561731725","anun":"Pronto","camp":"Junio","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-15","ff":"2026-08-31","sal":16,"dur":10},{"grupoId":"asana_1215732561731725","soporte":"Reinaldo","id":"1215732561731725","anun":"Pronto","camp":"Junio","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-15","ff":"2026-08-31","sal":16,"dur":10},{"grupoId":"asana_1214974395631201","soporte":"Ramon Anador","id":"1214974395631201","anun":"Pedidos Ya","camp":"Mundial","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-08","ff":"2026-07-13","sal":6,"dur":8},{"grupoId":"asana_1214974395631201","soporte":"Facal","id":"1214974395631201","anun":"Pedidos Ya","camp":"Mundial","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-08","ff":"2026-07-13","sal":6,"dur":8},{"grupoId":"asana_1214974395631201","soporte":"Reinaldo","id":"1214974395631201","anun":"Pedidos Ya","camp":"Mundial","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-08","ff":"2026-07-13","sal":6,"dur":8},{"grupoId":"asana_1215561704798931","soporte":"Facal","id":"1215561704798931","anun":"Passcard","camp":"Institucional","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-09","ff":"2026-07-09","sal":4,"dur":12},{"grupoId":"asana_1215431065379934","soporte":"Ramon Anador","id":"1215431065379934","anun":"Cousa","camp":"Uruguay","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-05","ff":"2026-07-11","sal":8,"dur":10},{"grupoId":"asana_1215431065379934","soporte":"Facal","id":"1215431065379934","anun":"Cousa","camp":"Uruguay","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-05","ff":"2026-07-11","sal":8,"dur":10},{"grupoId":"asana_1215295797889901","soporte":"Ramon Anador","id":"1215295797889901","anun":"La Diaria","camp":"Branding","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-08-04","sal":8,"dur":10},{"grupoId":"asana_1215295797889901","soporte":"Facal","id":"1215295797889901","anun":"La Diaria","camp":"Branding","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-08-04","sal":8,"dur":10},{"grupoId":"asana_1215295797889901","soporte":"Reinaldo","id":"1215295797889901","anun":"La Diaria","camp":"Branding","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-08-04","sal":8,"dur":10},{"grupoId":"asana_1215314079689016","soporte":"Facal","id":"1215314079689016","anun":"Visa","camp":"Fifa During","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-07-19","sal":4,"dur":10},{"grupoId":"asana_1215168312705913","soporte":"Ramon Anador","id":"1215168312705913","anun":"Ducsa","camp":"Cargá y viajá","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-08-16","sal":6,"dur":8},{"grupoId":"asana_1215168312705913","soporte":"Facal","id":"1215168312705913","anun":"Ducsa","camp":"Cargá y viajá","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-08-16","sal":6,"dur":8},{"grupoId":"asana_1215168312705913","soporte":"Reinaldo","id":"1215168312705913","anun":"Ducsa","camp":"Cargá y viajá","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-08-16","sal":6,"dur":8},{"grupoId":"asana_1215243448002335","soporte":"Ramon Anador","id":"1215243448002335","anun":"Nestle","camp":"Corporate 50 Aniversario","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-07-15","sal":12,"dur":12},{"grupoId":"asana_1215243448002335","soporte":"Facal","id":"1215243448002335","anun":"Nestle","camp":"Corporate 50 Aniversario","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-07-15","sal":12,"dur":12},{"grupoId":"asana_1215243448002335","soporte":"Reinaldo","id":"1215243448002335","anun":"Nestle","camp":"Corporate 50 Aniversario","tipoCliente":"ESTANDAR","tipo":"TRADICIONAL","fi":"2026-06-01","ff":"2026-07-15","sal":12,"dur":12}];
 
 // ══════════════ ESTADO ══════════════
 // Cada "línea" = una pauta en un soporte. Las líneas con el mismo grupoId son la misma orden.
 let ordenes = [];
 let clientesPrioritarios = [];
-let bloquesPersistentes = {};   // keyed por lineId
+let bloquesPersistentes = {};   // keyed por lineId — bloques Tradicionales
+let bloquesPE = {};              // keyed por soporte → array de 32 slots (2 PE × 16 grupos)
+                                 // slot 0=PE_A1, 1=PE_A2, 2=PE_B1, 3=PE_B2... etc.
+// Calcula la capacidad real del bloque Tradicional j según los PE ocupados en ese soporte
+function capTradReal(j, sopNombre){
+  const peSlots = bloquesPE[sopNombre] || new Array(32).fill(null);
+  const pe1Dur = peSlots[j*2]   ? (peSlots[j*2].dur   || 0) : 0;
+  const pe2Dur = peSlots[j*2+1] ? (peSlots[j*2+1].dur || 0) : 0;
+  const pe1Usado = Math.min(pe1Dur, PARAMS_BASE.capPE);
+  const pe2Usado = Math.min(pe2Dur, PARAMS_BASE.capPE);
+  return PARAMS_BASE.capBloque - pe1Usado - pe2Usado; // entre 21 y 45
+}
+function segPEenGrupo(j, sopNombre){
+  const peSlots = bloquesPE[sopNombre] || new Array(32).fill(null);
+  const pe1Dur = peSlots[j*2]   ? Math.min(peSlots[j*2].dur   || 0, PARAMS_BASE.capPE) : 0;
+  const pe2Dur = peSlots[j*2+1] ? Math.min(peSlots[j*2+1].dur || 0, PARAMS_BASE.capPE) : 0;
+  return { pe1:pe1Dur, pe2:pe2Dur };
+}
 let vistaActual = 'ordenes';
 let soporteSeleccionado = SOPORTES[0].nombre;
 let editandoGrupo = null;
@@ -458,11 +562,13 @@ function guardar(){
   try { localStorage.setItem('tdp_ordenes_v1', JSON.stringify(ordenes)); } catch(_){}
   try { localStorage.setItem('tdp_prio_v1', JSON.stringify(clientesPrioritarios)); } catch(_){}
   try { localStorage.setItem('tdp_bloques_v1', JSON.stringify(bloquesPersistentes)); } catch(_){}
+  try { localStorage.setItem('tdp_bloquesPE_v1', JSON.stringify(bloquesPE)); } catch(_){}
 }
 function cargarLocal(){
   try { const o=localStorage.getItem('tdp_ordenes_v1'); if(o) ordenes=JSON.parse(o); } catch(_){}
   try { const p=localStorage.getItem('tdp_prio_v1'); if(p) clientesPrioritarios=JSON.parse(p); } catch(_){}
   try { const b=localStorage.getItem('tdp_bloques_v1'); if(b) bloquesPersistentes=JSON.parse(b); } catch(_){}
+  try { const pe=localStorage.getItem('tdp_bloquesPE_v1'); if(pe) bloquesPE=JSON.parse(pe); } catch(_){}
 }
 // Carga inicial desde la Sheet (tab Facal) sólo si no hay datos locales — para no arrancar vacío
 function seedDesdeSheet(){
@@ -494,7 +600,7 @@ function sincronizarAsana(){
 function hoy(){ const d=new Date(); return new Date(d.getFullYear(),d.getMonth(),d.getDate()); }
 function parseFecha(s){ if(!s) return null; const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); }
 function diasRestantes(ff){ const f=parseFecha(ff); if(!f) return null; return Math.round((f-hoy())/86400000); }
-function estaVigente(o){ const d=diasRestantes(o.ff); return d===null || d>=0; }
+function estaVigente(o){ if(!o.ff || o.ff==='') return true; const d=diasRestantes(o.ff); return d===null || d>=0; }
 function fmtDate(s){ if(!s) return '—'; const [y,m,d]=s.split('-'); return `${d}/${m}/${y.slice(2)}`; }
 function fmt2(n){ return (n.toFixed(3).replace(/\.?0+$/,''))||'0'; }
 function badgeDias(ff){ const d=diasRestantes(ff); if(d===null) return ''; if(d<=0) return `<span class="dias-badge hoy">${d===0?'Hoy':'Vencida'}</span>`; if(d<=3) return `<span class="dias-badge urgente">${d}d</span>`; if(d<=7) return `<span class="dias-badge pronto">${d}d</span>`; return `<span class="dias-badge ok">${d}d</span>`; }
@@ -553,20 +659,32 @@ function indicesIdeales(n){
 }
 
 // ══════════════ ASIGNACIÓN DE BLOQUES (no destructiva, por soporte) ══════════════
-function asignarBloques(lineas,ajustadas,sup){
+function asignarBloques(lineas,ajustadas,sup,nombre){
   const usado=new Array(16).fill(0); const resultado={};
   lineas.forEach(o=>{ const p=bloquesPersistentes[lineId(o)]; if(p && p.length){ resultado[o.grupoId]={bloques:p.map(j=>LETRAS[j]),bloquesIdx:p,reducido:false,sobreLimite:false}; p.forEach(j=>{ if(j>=0&&j<16) usado[j]+=o.dur; }); } });
   const esPrio=(o)=>clientesPrioritarios.some(p=>o.anun.toLowerCase().includes(p.toLowerCase())||(o.id||'').toLowerCase().includes(p.toLowerCase()));
-  const sinAsig=lineas.filter(o=>!resultado[o.grupoId]).map(o=>{ const aj=ajustadas.find(a=>a.grupoId===o.grupoId)||{salidaRealAjustada:calcOrden(o,sup).salidaReal}; return {o,n:Math.ceil(aj.salidaRealAjustada/sup.progsXHora),prio:esPrio(o)}; }).sort((a,b)=>b.prio-a.prio||b.n-a.n||b.o.dur-a.o.dur);
+  const sinAsig=lineas.filter(o=>!resultado[o.grupoId]).map(o=>{ const aj=ajustadas.find(a=>a.grupoId===o.grupoId)||{salidaRealAjustada:calcOrden(o,sup).salidaReal}; return {o,n:Math.ceil(aj.salidaRealAjustada/sup.progsXHora),prio:esPrio(o)||o.espacioFijo}; }).sort((a,b)=>b.o.espacioFijo-a.o.espacioFijo||b.prio-a.prio||b.n-a.n||b.o.dur-a.o.dur);
   sinAsig.forEach(({o,n})=>{
     if(n<=0){ resultado[o.grupoId]={bloques:[],bloquesIdx:[],reducido:false,sobreLimite:false}; return; }
-    const nE=Math.min(Math.ceil(n),16); const ideales=indicesIdeales(nE); const asign=[]; let red=false,sob=false;
+
+    // ESPACIO FIJO: entra siempre primero y con bloques ideales garantizados (A,E,I,M)
+    // pero NO bloquea el bloque completo — otros anunciantes pueden compartirlo
+    // La diferencia con un cliente normal: sus índices ideales SIEMPRE son 0,4,8,12
+    // independientemente del n calculado
+    const idealesBase = o.espacioFijo ? [0,4,8,12] : null;
+
+    const ideales=idealesBase || indicesIdeales(n); const asign=[]; let red=false,sob=false;
     for(const idi of ideales){
       if(asign.includes(idi)) continue;
-      if(usado[idi]+o.dur<=sup.capBloque){ usado[idi]+=o.dur; asign.push(idi); }
+      const capJ = o.tipo==='PLACE EXCHANGE' ? sup.capPE : capTradReal(idi, nombre);
+      if(usado[idi]+o.dur<=capJ){ usado[idi]+=o.dur; asign.push(idi); }
       else {
         let mejor=-1,md=999;
-        for(let j=0;j<16;j++){ if(asign.includes(j)) continue; if(usado[j]+o.dur<=sup.capBloque){ const dist=Math.min(Math.abs(j-idi),16-Math.abs(j-idi)); if(dist<md){md=dist;mejor=j;} } }
+        for(let j=0;j<16;j++){
+          if(asign.includes(j)) continue;
+          const capJJ = o.tipo==='PLACE EXCHANGE' ? sup.capPE : capTradReal(j, nombre);
+          if(usado[j]+o.dur<=capJJ){ const dist=Math.min(Math.abs(j-idi),16-Math.abs(j-idi)); if(dist<md){md=dist;mejor=j;} }
+        }
         if(mejor>=0){ usado[mejor]+=o.dur; asign.push(mejor); red=true; }
         else { let mu=0; for(let j=1;j<16;j++){ if(!asign.includes(j)&&usado[j]<usado[mu]) mu=j; } if(!asign.includes(mu)){ usado[mu]+=o.dur; asign.push(mu); sob=true; red=true; } }
       }
@@ -576,7 +694,8 @@ function asignarBloques(lineas,ajustadas,sup){
     bloquesPersistentes[lineId(o)]=asign;
   });
   const alertas=[];
-  for(let c=0;c<4;c++){ const bl=[c*4,c*4+1,c*4+2,c*4+3]; for(let b=0;b<bl.length-1;b++){ const a=bl[b],d=bl[b+1]; const enA=lineas.filter(o=>resultado[o.grupoId]?.bloquesIdx?.includes(a)); const enB=lineas.filter(o=>resultado[o.grupoId]?.bloquesIdx?.includes(d)); enA.forEach(oA=>{ if(enB.some(oB=>oB.anun===oA.anun)){ alertas.push(`⚠ ${oA.anun} en bloques consecutivos ${LETRAS[a]}-${LETRAS[d]} (ciclo ${c+1})`); } }); } }
+  for(let c=0;c<4;c++){ const bl=[c*4,c*4+1,c*4+2,c*4+3]; for(let b=0;b<bl.length-1;b++){ const a=bl[b],d=bl[b+1]; const enA=lineas.filter(o=>resultado[o.grupoId]?.bloquesIdx?.includes(a)); const enB=lineas.filter(o=>resultado[o.grupoId]?.bloquesIdx?.includes(d)); enA.forEach(oA=>{ // No alertar si es espacio fijo (bloques consecutivos son esperables)
+    if(!oA.espacioFijo && enB.some(oB=>!oB.espacioFijo && oB.anun===oA.anun)){ alertas.push(`⚠ ${oA.anun} en bloques consecutivos ${LETRAS[a]}-${LETRAS[d]} (ciclo ${c+1})`); } }); } }
   return { resultado, usado, alertas };
 }
 
@@ -586,10 +705,31 @@ function invalidarCache(){ _cache={}; }
 function computeSoporte(nombre){
   if(_cache[nombre]) return _cache[nombre];
   const sup=getSoporte(nombre);
-  const activas=ordenes.filter(o=>o.soporte===nombre && estaVigente(o));
-  const ajustadas=calcSalidasAjustadas(activas,sup);
-  const { resultado, usado, alertas }=asignarBloques(activas,ajustadas,sup);
-  const r={ sup, activas, ajustadas, resultado, usado, alertas };
+  const activas=ordenes.filter(o=>String(o.soporte).trim()===String(nombre).trim() && estaVigente(o));
+  // Separar PE, Espacio Fijo y Tradicional normal
+  const activasPE    = activas.filter(o=>o.tipo==='PLACE EXCHANGE');
+  const activasFijo  = activas.filter(o=>o.tipo!=='PLACE EXCHANGE' && o.espacioFijo);
+  const activasTrad  = activas.filter(o=>o.tipo!=='PLACE EXCHANGE' && !o.espacioFijo);
+  // Los de espacio fijo se asignan primero y sus bloques nunca se tocan
+  // Asignar PE primero (llenan sus slots A1/A2... y definen cuánto sobra para Trad)
+  if(!bloquesPE[nombre]) bloquesPE[nombre]=new Array(32).fill(null);
+  // Resetear slots de PE para recalcular solo los vigentes
+  bloquesPE[nombre]=new Array(32).fill(null);
+  activasPE.forEach(o=>{
+    // Buscar primer slot PE libre en cualquier grupo
+    for(let j=0;j<16;j++){
+      if(!bloquesPE[nombre][j*2]){ bloquesPE[nombre][j*2]={grupoId:o.grupoId,anun:o.anun,camp:o.camp,dur:o.dur}; break; }
+      if(!bloquesPE[nombre][j*2+1]){ bloquesPE[nombre][j*2+1]={grupoId:o.grupoId,anun:o.anun,camp:o.camp,dur:o.dur}; break; }
+    }
+  });
+  // Todos los tradicionales juntos — fijo entra primero por su prioridad en el sort
+  // de asignarBloques (o.espacioFijo = true tiene prioridad máxima)
+  const todasTrad=[...activasFijo,...activasTrad];
+  const ajustadas=calcSalidasAjustadas(todasTrad,sup);
+  const { resultado, usado, alertas }=asignarBloques(todasTrad,ajustadas,sup,nombre);
+  // usadoPE: seg reales de PE en cada grupo
+  const usadoPE=Array.from({length:16},(_,j)=>segPEenGrupo(j,nombre));
+  const r={ sup, activas, activasTrad:todasTrad, activasPE, activasFijo, ajustadas, resultado, usado, usadoPE, alertas };
   _cache[nombre]=r; return r;
 }
 
@@ -611,6 +751,8 @@ function cambiarVista(v){
   document.getElementById('viewOrdenes').style.display=v==='ordenes'?'block':'none';
   document.getElementById('viewSoporte').style.display=v==='soporte'?'block':'none';
   document.getElementById('viewBuscar').style.display=v==='buscar'?'block':'none';
+  if(v==='soporte') document.getElementById('sopSelect').value=soporteSeleccionado;
+  invalidarCache();
   renderActiva();
 }
 function renderActiva(){
@@ -654,8 +796,12 @@ function renderOrdenes(){
     const fiComun=valorComun(g.lineas,'fi');
     const tr=document.createElement('tr');
     tr.innerHTML=`
-      <td><div class="anun-name">${l.anun}${esPrioCli(l)?'<span class="badge badge-prio">★</span>':''}</div>${l.camp?`<div class="anun-camp">${l.camp}</div>`:''}<div class="anun-id">${l.id||'—'}</div></td>
-      <td>${tcBadge(l.tipoCliente)}</td>
+      <td><div class="anun-name">${l.anun}${esPrioCli(l)?'<span class="badge badge-prio">★</span>':''}${l.espacioFijo?'<span class="badge" style="background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;font-size:9px">📌 Espacio fijo</span>':''}</div>${l.camp?`<div class="anun-camp">${l.camp}</div>`:''}<div class="anun-id">${l.id||'—'}</div></td>
+      <td><select class="cell-tc-select" onchange="updateGrupo('${g.grupoId}','tipoCliente',this.value)">
+        <option value="ESTANDAR" ${valorComun(g.lineas,'tipoCliente')==='ESTANDAR'?'selected':''}>STD</option>
+        <option value="TOP"      ${valorComun(g.lineas,'tipoCliente')==='TOP'?'selected':''}>TOP</option>
+        <option value="NUEVO"    ${valorComun(g.lineas,'tipoCliente')==='NUEVO'?'selected':''}>NUEVO</option>
+      </select></td>
       <td>${tipoBadge(l.tipo)}</td>
       <td><div class="sop-chips">${sops.map(s=>`<span class="sop-chip">${s}</span>`).join('')}</div></td>
       <td><span class="date-range">${fiComun!==null?fmtDate(fiComun):'varios'}</span>${ffComun!==null?badgeDias(ffComun):''}</td>
@@ -676,8 +822,10 @@ function renderOrdenes(){
       <td><div class="anun-name" style="color:var(--fin-text)"><span class="fin-checkmark">✓</span>${l.anun}${l.camp?' — '+l.camp:''}</div><div class="anun-id">${l.id||'—'}</div></td>
       <td>${tcBadge(l.tipoCliente)}</td><td>${tipoBadge(l.tipo)}</td>
       <td><div class="sop-chips">${g.lineas.map(x=>`<span class="sop-chip">${x.soporte}</span>`).join('')}</div></td>
-      <td><span class="date-range">${fiC!==null?fmtDate(fiC):'varios'} → ${ffC!==null?fmtDate(ffC):'varios'}</span></td>
-      <td><span class="mono">${salC!==null?salC:'—'}</span></td><td><span class="mono">${durC!==null?durC:'—'}</span></td>
+      <td><span class="date-range">${fiC!==null?fmtDate(fiC):'varios'}</span></td>
+      <td><input class="cell-input date-input" type="date" value="${ffC||''}" onchange="updateGrupo('${g.grupoId}','ff',this.value)" title="Extender fecha fin para reactivar"></td>
+      <td><input class="cell-input" type="number" min="0.5" step="0.5" value="${salC!==null?salC:''}" placeholder="${salC===null?'varios':''}" onchange="updateGrupo('${g.grupoId}','sal',+this.value)"></td>
+      <td><input class="cell-input" type="number" min="1" max="120" value="${durC!==null?durC:''}" placeholder="${durC===null?'varios':''}" onchange="updateGrupo('${g.grupoId}','dur',+this.value)"></td>
       <td><button class="btn-icon del" onclick="deleteGrupo('${g.grupoId}')">✕</button></td>`;
     fb.appendChild(tr);
   });
@@ -696,14 +844,18 @@ function deleteGrupo(grupoId){
 }
 
 // ══════════════ VISTA POR SOPORTE ══════════════
-let sBloqueSel=-1, sUsado=new Array(16).fill(0), sResultado={}, sActivas=[];
+let sBloqueSel=-1, sUsado=new Array(16).fill(0), sResultado={}, sActivas=[], sActivasTrad=[], sActivasPE=[], sUsadoPE=[];
 function initSopSelect(){ const sel=document.getElementById('sopSelect'); sel.innerHTML=SOPORTES.map(s=>`<option value="${s.nombre}">${s.nombre}</option>`).join(''); sel.value=soporteSeleccionado; }
-function onSopChange(){ soporteSeleccionado=document.getElementById('sopSelect').value; sBloqueSel=-1; document.getElementById('sBloqueDetail').classList.remove('open'); renderSoporte(); }
+function onSopChange(){ soporteSeleccionado=document.getElementById('sopSelect').value.trim(); sBloqueSel=-1; document.getElementById('sBloqueDetail').classList.remove('open'); invalidarCache(); renderSoporte(); }
 document.getElementById('searchSop').addEventListener('input',renderSoporte);
 
 function renderSoporte(){
-  const { sup, activas, ajustadas, resultado, usado, alertas }=computeSoporte(soporteSeleccionado);
-  sUsado=usado; sResultado=resultado; sActivas=activas;
+  const comp=computeSoporte(soporteSeleccionado);
+  const { sup, activas, ajustadas, resultado, usado, alertas }=comp;
+  const activasTrad=comp.activasTrad||activas.filter(o=>o.tipo!=='PLACE EXCHANGE');
+  const activasPE=comp.activasPE||activas.filter(o=>o.tipo==='PLACE EXCHANGE');
+  const usadoPE=comp.usadoPE||Array.from({length:16},(_,j)=>segPEenGrupo(j,soporteSeleccionado));
+  sUsado=usado; sResultado=resultado; sActivas=activas; sActivasTrad=activasTrad; sActivasPE=activasPE; sUsadoPE=usadoPE;
   const totalProg=ajustadas.reduce((s,r)=>s+r.salidaRealAjustada*r.dur/sup.progsXHora,0);
   const libres=Math.max(0,sup.pautaXProgSeg-totalProg);
   const pct=(totalProg/sup.pautaXProgSeg)*100;
@@ -722,23 +874,43 @@ function renderSoporte(){
   document.getElementById('sCapBar').style.width=Math.min(pct,100)+'%'; document.getElementById('sCapBar').style.background=barColor;
   document.getElementById('sCapPct').textContent=pct.toFixed(1)+'%'; document.getElementById('sCapPct').style.color=pct>100?'var(--red)':pct>85?'var(--amber)':'var(--text)';
 
-  renderBloquesGrid(usado);
+  renderBloquesGrid(usado, usadoPE);
   if(sBloqueSel>=0 && usado[sBloqueSel]>0) openBloqueDet(sBloqueSel);
 
   const q=document.getElementById('searchSop').value.trim().toLowerCase();
   const body=document.getElementById('sopBody'); body.innerHTML='';
+  // Mostrar todas las activas; PE aparecen sin bloques (van al panel PE del Grupo Madre)
   const visibles=activas.filter(o=>{ if(!q) return true; const h=(o.anun+' '+(o.camp||'')+' '+(o.id||'')).toLowerCase(); return q.split(' ').every(w=>h.includes(w)); });
-  if(visibles.length===0){ body.innerHTML='<tr class="empty-row"><td colspan="14">No hay pautas activas en este soporte.</td></tr>'; }
+  if(visibles.length===0){ const totalEnSoporte=ordenes.filter(o=>o.soporte===soporteSeleccionado).length; body.innerHTML=`<tr class="empty-row"><td colspan="14">No hay pautas activas en este soporte. (Total en array: ${totalEnSoporte} líneas, vigentes: ${activas.length})</td></tr>`; }
   visibles.forEach(o=>{
-    const c=calcOrden(o,sup); const aj=ajustadas.find(a=>a.grupoId===o.grupoId)||{salidaRealAjustada:c.salidaReal,segAjustados:c.segReales,ajuste:0};
-    const r=resultado[o.grupoId]||{bloques:[],reducido:false,sobreLimite:false};
+    const c=calcOrden(o,sup); 
+    const aj=o.tipo==='PLACE EXCHANGE'?{salidaRealAjustada:c.salidaReal,segAjustados:c.segReales,ajuste:0}:ajustadas.find(a=>a.grupoId===o.grupoId)||{salidaRealAjustada:c.salidaReal,segAjustados:c.segReales,ajuste:0};
+    const r=o.tipo==='PLACE EXCHANGE'?{bloques:[],reducido:false,sobreLimite:false}:resultado[o.grupoId]||{bloques:[],reducido:false,sobreLimite:false};
     const diffClass=c.diff===0?'diff-zero':c.diff>0?'diff-pos':'diff-neg'; const diffLabel=c.diff>=0?`+${c.diff}`:`${c.diff}`;
-    let blocksHTML=''; if(r.bloques.length===0){ blocksHTML='<span style="color:var(--muted);font-size:11px">— sin asignar</span>'; } else { const cls=r.sobreLimite?'over':r.reducido?'reduced':''; blocksHTML=r.bloques.map(b=>`<span class="bl-tag ${cls}">${b}</span>`).join(''); if(r.sobreLimite) blocksHTML+=`<span class="bl-note danger">⚠ Bloque sobre límite</span>`; else if(r.reducido) blocksHTML+=`<span class="bl-note">↓ Ajustado al espacio</span>`; }
+    let blocksHTML='';
+    if(o.tipo==='PLACE EXCHANGE'){
+      // PE: mostrar en qué slot PE está asignado
+      const peSl=bloquesPE[soporteSeleccionado]||new Array(32).fill(null);
+      const peSlots=[];
+      for(let jj=0;jj<16;jj++){
+        if(peSl[jj*2]&&peSl[jj*2].grupoId===o.grupoId) peSlots.push(`PE ${LETRAS[jj]}1`);
+        if(peSl[jj*2+1]&&peSl[jj*2+1].grupoId===o.grupoId) peSlots.push(`PE ${LETRAS[jj]}2`);
+      }
+      blocksHTML = peSlots.length>0
+        ? peSlots.map(s=>`<span class="bl-tag" style="background:var(--pe-light);color:var(--pe-text);border-color:var(--pe-brd)">${s}</span>`).join('')
+        : '<span style="color:var(--muted);font-size:11px">— sin slot PE libre</span>';
+    } else if(r.bloques.length===0){ blocksHTML='<span style="color:var(--muted);font-size:11px">— sin asignar</span>'; }
+    else { const cls=r.sobreLimite?'over':r.reducido?'reduced':''; blocksHTML=r.bloques.map(b=>`<span class="bl-tag ${cls}">${b}</span>`).join(''); if(r.sobreLimite) blocksHTML+=`<span class="bl-note danger">⚠ Bloque sobre límite</span>`; else if(r.reducido) blocksHTML+=`<span class="bl-note">↓ Ajustado al espacio</span>`; }
     let ajLabel=''; if(aj.ajuste>0) ajLabel=`<span style="font-size:10px;color:var(--green)"> +${aj.ajuste} plus</span>`; if(aj.ajuste<0) ajLabel=`<span style="font-size:10px;color:var(--amber)"> ${aj.ajuste}</span>`;
     const tr=document.createElement('tr');
     tr.innerHTML=`
-      <td><div class="anun-name">${o.anun}${esPrioCli(o)?'<span class="badge badge-prio">★</span>':''}</div>${o.camp?`<div class="anun-camp">${o.camp}</div>`:''}<div class="anun-id">${o.id||'—'}</div></td>
-      <td>${tcBadge(o.tipoCliente)}</td><td>${tipoBadge(o.tipo)}</td>
+      <td><div class="anun-name">${o.espacioFijo?('📌 Pauta '+o.anun):o.anun}${esPrioCli(o)?'<span class="badge badge-prio">★</span>':''}${o.espacioFijo?'<span class="badge" style="background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;font-size:9px">Espacio fijo</span>':''}</div>${o.camp?`<div class="anun-camp">${o.camp}</div>`:''}<div class="anun-id">${o.id||'—'}</div></td>
+      <td><select class="cell-tc-select" onchange="updateLinea('${o.grupoId}','${o.soporte}','tipoCliente',this.value)">
+        <option value="ESTANDAR" ${(o.tipoCliente||'ESTANDAR')==='ESTANDAR'?'selected':''}>STD</option>
+        <option value="TOP"      ${o.tipoCliente==='TOP'?'selected':''}>TOP</option>
+        <option value="NUEVO"    ${o.tipoCliente==='NUEVO'?'selected':''}>NUEVO</option>
+      </select></td>
+      <td>${tipoBadge(o.tipo)}</td>
       <td><span class="date-range">${fmtDate(o.fi)}</span>${badgeDias(o.ff)}</td>
       <td><input class="cell-input date-input" type="date" value="${o.ff||''}" onchange="updateLinea('${o.grupoId}','${o.soporte}','ff',this.value)"></td>
       <td><input class="cell-input" type="number" min="0.5" step="0.5" value="${o.sal}" onchange="updateLinea('${o.grupoId}','${o.soporte}','sal',+this.value)"></td>
@@ -757,40 +929,123 @@ function renderSoporte(){
   // finalizadas del soporte
   const finS=ordenes.filter(o=>o.soporte===soporteSeleccionado && !estaVigente(o));
   const fb=document.getElementById('sopFinBody'); fb.innerHTML=''; document.getElementById('sopFinCount').textContent=`(${finS.length})`;
-  finS.forEach(o=>{ const c=calcOrden(o,sup); const tr=document.createElement('tr'); tr.className='fin-row'; tr.innerHTML=`<td><div class="anun-name" style="color:var(--fin-text)"><span class="fin-checkmark">✓</span>${o.anun}${o.camp?' — '+o.camp:''}</div><div class="anun-id">${o.id||'—'}</div></td><td>${tcBadge(o.tipoCliente)}</td><td><span class="date-range">${fmtDate(o.fi)} → ${fmtDate(o.ff)}</span></td><td><span class="mono">${o.sal}</span></td><td><span class="mono">${o.dur}</span></td><td><span class="mono">${c.salidaReal}</span></td><td><span class="mono">${c.segReales}</span></td><td><button class="btn-icon del" onclick="deleteLinea('${o.grupoId}','${o.soporte}')">✕</button></td>`; fb.appendChild(tr); });
+  finS.forEach(o=>{ const c=calcOrden(o,sup); const tr=document.createElement('tr'); tr.className='fin-row'; tr.innerHTML=`<td><div class="anun-name" style="color:var(--fin-text)"><span class="fin-checkmark">✓</span>${o.anun}${o.camp?' — '+o.camp:''}</div><div class="anun-id">${o.id||'—'}</div></td>
+      <td><select class="cell-tc-select" onchange="updateLinea('${o.grupoId}','${o.soporte}','tipoCliente',this.value)"><option value="ESTANDAR" ${(o.tipoCliente||'ESTANDAR')==='ESTANDAR'?'selected':''}>STD</option><option value="TOP" ${o.tipoCliente==='TOP'?'selected':''}>TOP</option><option value="NUEVO" ${o.tipoCliente==='NUEVO'?'selected':''}>NUEVO</option></select></td>
+      <td><span class="date-range">${fmtDate(o.fi)}</span></td>
+      <td><input class="cell-input date-input" type="date" value="${o.ff||''}" onchange="updateLinea('${o.grupoId}','${o.soporte}','ff',this.value)" title="Extender para reactivar"></td>
+      <td><input class="cell-input" type="number" min="0.5" step="0.5" value="${o.sal}" onchange="updateLinea('${o.grupoId}','${o.soporte}','sal',+this.value)"></td>
+      <td><input class="cell-input" type="number" min="1" max="120" value="${o.dur}" onchange="updateLinea('${o.grupoId}','${o.soporte}','dur',+this.value)"></td>
+      <td><span class="mono">${c.salidaReal}</span></td><td><span class="mono">${c.segReales}</span></td>
+      <td><button class="btn-icon del" onclick="deleteLinea('${o.grupoId}','${o.soporte}')">✕</button></td>`; fb.appendChild(tr); });
 
-  const ap=document.getElementById('alertsPanel'); ap.innerHTML='';
-  if(pct>100){ const p=document.createElement('div'); p.className='alert-pill cap'; p.textContent=`⚠ ${sup.nombre}: pauta supera 720 seg por ${Math.round(totalProg-sup.pautaXProgSeg)} seg`; ap.appendChild(p); }
-  if(sobre>0){ const p=document.createElement('div'); p.className='alert-pill'; p.textContent=`⚠ ${sup.nombre}: ${sobre} bloque(s) superan 45 seg`; ap.appendChild(p); }
-  alertas.forEach(m=>{ const p=document.createElement('div'); p.className='alert-pill warn-bloque'; p.textContent=m; ap.appendChild(p); });
+  // Panel de alertas integrado
+  const aiPanel=document.getElementById('alertsIntegrated');
+  const aiList=document.getElementById('alertsIntegratedList');
+  const aiHeader=document.getElementById('alertsIntegratedHeader');
+  aiList.innerHTML='';
+  const todasAlertas=[];
+  let hayCap=false;
+  if(pct>100){ todasAlertas.push({msg:`Pauta supera 720 seg por ${Math.round(totalProg-sup.pautaXProgSeg)} seg — se ajustaron salidas automáticamente`,danger:true}); hayCap=true; }
+  if(sobre>0){ todasAlertas.push({msg:`${sobre} bloque${sobre>1?'s':''} superan los 45 seg — revisar asignación manual`,danger:true}); }
+  alertas.forEach(m=>todasAlertas.push({msg:m.replace('⚠ ',''),danger:false}));
+  if(todasAlertas.length===0){ aiPanel.classList.remove('visible','cap-only'); }
+  else {
+    aiPanel.classList.add('visible');
+    aiPanel.classList.toggle('cap-only',hayCap && todasAlertas.length===1);
+    aiHeader.textContent=`⚠ ${todasAlertas.length} alerta${todasAlertas.length>1?'s':''} en ${sup.nombre}`;
+    aiList.innerHTML=todasAlertas.map(a=>`<div class="alert-row${a.danger?' danger':''}"><span class="alert-icon">${a.danger?'🔴':'🟡'}</span><span class="alert-msg">${a.msg}</span></div>`).join('');
+  }
 }
 
-function renderBloquesGrid(usado){
+function renderBloquesGrid(usado, usadoPE){
   const sup=getSoporte(soporteSeleccionado);
   const grid=document.getElementById('sBloquesGrid'); grid.innerHTML='';
+  usadoPE = usadoPE || Array.from({length:16},(_,j)=>segPEenGrupo(j,soporteSeleccionado));
+
   LETRAS.forEach((l,j)=>{
-    if(j>0 && j%4===0){ const sep=document.createElement('div'); sep.className='bloque-ciclo-sep'; grid.appendChild(sep); }
-    const pct=Math.min(100,(usado[j]/sup.capBloque)*100);
-    const cls=usado[j]===0?'empty':usado[j]>sup.capBloque?'over':usado[j]>36?'warn':'ok';
-    const bc=cls==='over'?'var(--red)':cls==='warn'?'var(--amber)':'var(--accent)';
-    const chip=document.createElement('div'); chip.className=`bloque-chip ${cls}${sBloqueSel===j?' selected':''}`; chip.title=`Bloque ${l}: ${usado[j]}/${sup.capBloque} seg`;
-    chip.innerHTML=`<span class="bl-letra">${l}</span><span class="bl-seg">${usado[j]}s</span><div class="bl-bar"><div class="bl-bar-fill" style="width:${pct}%;background:${bc}"></div></div>`;
-    if(cls!=='empty') chip.addEventListener('click',()=>toggleBloqueDet(j));
-    grid.appendChild(chip);
+    if(j>0 && j%4===0){
+      const sep=document.createElement('div'); sep.className='bloque-ciclo-sep'; grid.appendChild(sep);
+    }
+
+    const pe1=usadoPE[j].pe1, pe2=usadoPE[j].pe2;
+    const capTrad=capTradReal(j, soporteSeleccionado);
+    const tradUsado=usado[j];
+    const totalGrupo=pe1+tradUsado+pe2;
+    const sobreGrupo=totalGrupo>sup.capBloque;
+
+    // Wrapper del Grupo Madre
+    const wrap=document.createElement('div');
+    wrap.className='grupo-madre'+(sBloqueSel===j?' gm-selected':'');
+    wrap.title=`Grupo Madre ${l} — PE1:${pe1}s + Trad:${tradUsado}s + PE2:${pe2}s = ${totalGrupo}/45s`;
+
+    // Letra del grupo
+    const lbl=document.createElement('div');
+    lbl.className='gm-label'; lbl.textContent=l; wrap.appendChild(lbl);
+
+    // Sub-bloque PE1
+    const pe1El=document.createElement('div');
+    pe1El.className='sub-bloque sub-pe'+(pe1>0?' sub-pe-activo':'')+(pe1>sup.capPE?' sub-sobre':'');
+    const pe1Pct=Math.min(100,(pe1/sup.capPE)*100);
+    pe1El.innerHTML=`<div class="sub-label">PE ${l}1</div><div class="sub-seg">${pe1||0}s</div><div class="sub-bar"><div class="sub-bar-fill" style="width:${pe1Pct}%"></div></div>`;
+    wrap.appendChild(pe1El);
+
+    // Sub-bloque Tradicional
+    const tradEl=document.createElement('div');
+    const tradPct=Math.min(100,(tradUsado/capTrad)*100);
+    // Ver si hay spots de espacio fijo en este grupo para pintarlo diferente
+    const hayFijoEnGrupo = sActivasTrad && sActivasTrad.some(o=>o.espacioFijo && (sResultado[o.grupoId]||{bloquesIdx:[]}).bloquesIdx.includes(j));
+    const tradCls=tradUsado===0?'sub-trad-empty':tradUsado>capTrad?'sub-trad-sobre':hayFijoEnGrupo?'sub-trad-fijo':tradPct>85?'sub-trad-warn':'sub-trad-ok';
+    tradEl.className=`sub-bloque sub-trad ${tradCls}`;
+    tradEl.innerHTML=`<div class="sub-label">PAUTA ${l}</div><div class="sub-seg">${tradUsado||0}/${capTrad}s</div><div class="sub-bar"><div class="sub-bar-fill" style="width:${tradPct}%"></div></div>`;
+    if(tradUsado>0||pe1>0||pe2>0) tradEl.addEventListener('click',()=>toggleBloqueDet(j));
+    wrap.appendChild(tradEl);
+
+    // Sub-bloque PE2
+    const pe2El=document.createElement('div');
+    pe2El.className='sub-bloque sub-pe'+(pe2>0?' sub-pe-activo':'')+(pe2>sup.capPE?' sub-sobre':'');
+    const pe2Pct=Math.min(100,(pe2/sup.capPE)*100);
+    pe2El.innerHTML=`<div class="sub-label">PE ${l}2</div><div class="sub-seg">${pe2||0}s</div><div class="sub-bar"><div class="sub-bar-fill" style="width:${pe2Pct}%"></div></div>`;
+    wrap.appendChild(pe2El);
+
+    // Indicador de sobrecarga del grupo
+    if(sobreGrupo){
+      const ov=document.createElement('div'); ov.className='gm-over'; ov.textContent='⚠';
+      ov.title=`Grupo Madre ${l} supera 45 seg (${totalGrupo}s)`; wrap.appendChild(ov);
+    }
+    grid.appendChild(wrap);
   });
 }
-function toggleBloqueDet(j){ if(sBloqueSel===j){ closeBloqueDet(); return; } sBloqueSel=j; openBloqueDet(j); renderBloquesGrid(sUsado); }
-function closeBloqueDet(){ sBloqueSel=-1; document.getElementById('sBloqueDetail').classList.remove('open'); renderBloquesGrid(sUsado); }
+function toggleBloqueDet(j){ if(sBloqueSel===j){ closeBloqueDet(); return; } sBloqueSel=j; openBloqueDet(j); renderBloquesGrid(sUsado, sUsadoPE); }
+function closeBloqueDet(){ sBloqueSel=-1; document.getElementById('sBloqueDetail').classList.remove('open'); renderBloquesGrid(sUsado, sUsadoPE); }
 function openBloqueDet(j){
   const sup=getSoporte(soporteSeleccionado);
   const letra=LETRAS[j], cic=Math.floor(j/4)+1, pos=(j%4)+1, total=sUsado[j], libre=sup.capBloque-total;
   document.getElementById('sBloqueDetailLetra').textContent=`Bloque ${letra} — Ciclo ${cic}, posición ${pos} · ${total}/${sup.capBloque} seg`;
   const cap=document.getElementById('sBloqueDetailCap'); cap.textContent=total>sup.capBloque?`⚠ ${total-sup.capBloque} seg sobre límite`:`${libre} seg libres`; cap.className='bloque-detail-cap '+(total>sup.capBloque?'over':total>36?'warn':'ok');
-  const spots=sActivas.filter(o=>sResultado[o.grupoId]?.bloquesIdx?.includes(j));
+  const spots=sActivas.filter(o=>sResultado[o.grupoId]?.bloquesIdx?.includes(j) && o.tipo!=='PLACE EXCHANGE');
+  const peSlotsActuales = bloquesPE[soporteSeleccionado] || new Array(32).fill(null);
+  const pe1Info = peSlotsActuales[j*2];
+  const pe2Info = peSlotsActuales[j*2+1];
+  const capTrad = capTradReal(j, soporteSeleccionado);
   const list=document.getElementById('sBloqueDetailList');
-  if(spots.length===0){ list.innerHTML='<div class="bloque-detail-empty">No hay pautas asignadas.</div>'; }
-  else { list.innerHTML=spots.map(o=>{ const pct=Math.round((o.dur/sup.capBloque)*100); return `<div class="bloque-detail-row"><div><div class="bd-anun">${o.anun}${o.camp?' — '+o.camp:''}</div><div class="bd-id">${o.id||'—'} · ${o.dur} seg</div></div><div class="bd-bar-wrap" style="display:flex;align-items:center;gap:6px"><div style="width:80px;height:5px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:${pct}%;background:var(--accent)"></div></div><span class="bd-dur">${o.dur}s</span></div></div>`; }).join('');
-    list.innerHTML+=`<div class="bloque-detail-row" style="background:var(--surface);font-weight:600"><div style="color:var(--muted);font-size:11px">Total</div><span class="bd-dur" style="color:${total>sup.capBloque?'var(--red)':total>36?'var(--amber)':'var(--text)'}">${total}/${sup.capBloque} seg</span></div>`; }
+  let rows='';
+  // Fila PE1
+  rows += `<div class="bloque-detail-row" style="border-left:3px solid var(--pe-color)">
+    <div><div class="bd-anun" style="color:var(--pe-text)">PE A${j+1} — bloque 1</div>
+    <div class="bd-id">${pe1Info?pe1Info.anun+' · '+pe1Info.dur+'s':'— vacío (el Trad absorbe 12s extra)'}</div></div>
+    <span class="bd-dur" style="color:var(--pe-text)">${pe1Info?Math.min(pe1Info.dur,12):0}/12s</span></div>`;
+  // Filas Tradicional
+  if(spots.length===0){ rows+=`<div class="bloque-detail-row"><div class="bd-anun" style="color:var(--muted)">Tradicional — vacío</div><span class="bd-dur">0/${capTrad}s</span></div>`; }
+  else { spots.forEach(o=>{ const pct=Math.round((o.dur/capTrad)*100); const labelAnun=o.espacioFijo?('📌 Pauta '+o.anun):(o.anun+(o.camp?' — '+o.camp:'')); const labelId=o.espacioFijo?('Espacio fijo · '+o.dur+'s · cap trad: '+capTrad+'s'):((o.id||'—')+' · '+o.dur+'s · cap trad: '+capTrad+'s'); const brdColor=o.espacioFijo?'var(--amber)':'var(--accent)'; const barColor=o.espacioFijo?'var(--amber)':'var(--accent)'; rows+=`<div class="bloque-detail-row" style="border-left:3px solid ${brdColor}"><div><div class="bd-anun">${labelAnun}</div><div class="bd-id">${labelId}</div></div><div style="display:flex;align-items:center;gap:6px"><div style="width:70px;height:5px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${barColor}"></div></div><span class="bd-dur">${o.dur}s</span></div></div>`; }); }
+  // Fila PE2
+  rows += `<div class="bloque-detail-row" style="border-left:3px solid var(--pe-color)">
+    <div><div class="bd-anun" style="color:var(--pe-text)">PE A${j+1} — bloque 2</div>
+    <div class="bd-id">${pe2Info?pe2Info.anun+' · '+pe2Info.dur+'s':'— vacío (el Trad absorbe 12s extra)'}</div></div>
+    <span class="bd-dur" style="color:var(--pe-text)">${pe2Info?Math.min(pe2Info.dur,12):0}/12s</span></div>`;
+  // Total del grupo
+  const totalGM=(pe1Info?Math.min(pe1Info.dur,12):0)+total+(pe2Info?Math.min(pe2Info.dur,12):0);
+  rows+=`<div class="bloque-detail-row" style="background:var(--surface);font-weight:600"><div style="color:var(--muted);font-size:11px">Total Grupo Madre ${LETRAS[j]}</div><span class="bd-dur" style="color:${totalGM>45?'var(--red)':totalGM>40?'var(--amber)':'var(--text)'}">${totalGM}/45s</span></div>`;
+  list.innerHTML = rows || '<div class="bloque-detail-empty">No hay datos.</div>';
   document.getElementById('sBloqueDetail').classList.add('open');
 }
 
@@ -846,6 +1101,7 @@ function openOrden(grupoId){
     document.getElementById('fTipoCliente').value=l.tipoCliente||'ESTANDAR'; document.getElementById('fTipo').value=l.tipo||'TRADICIONAL';
     document.getElementById('fId').value=l.id&&l.id!=='—'?l.id:'';
     document.getElementById('fFechaI').value=valorComun(lineas,'fi')||l.fi||''; document.getElementById('fFechaF').value=valorComun(lineas,'ff')||'';
+    document.getElementById('fEspacioFijo').checked=l.espacioFijo||false;
     const sc=valorComun(lineas,'sal'); const dc=valorComun(lineas,'dur');
     document.getElementById('fSal').value=sc!==null?sc:''; document.getElementById('fDur').value=dc!==null?dc:'';
     renderSoportesCheck(lineas.map(o=>o.soporte));
@@ -853,6 +1109,7 @@ function openOrden(grupoId){
     document.getElementById('modalOrdenTitle').textContent='Nueva orden de contratación';
     document.getElementById('btnSaveOrden').textContent='Agregar orden';
     ['fAnun','fCamp','fId','fSal','fDur','fFechaF'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fEspacioFijo').checked=false;
     document.getElementById('fFechaI').value=hoy().toISOString().split('T')[0];
     document.getElementById('fTipoCliente').value='ESTANDAR'; document.getElementById('fTipo').value='TRADICIONAL';
     renderSoportesCheck([SOPORTES[0].nombre]);
@@ -868,7 +1125,7 @@ function saveOrden(){
   if(!anun||!sal||!dur){ alert('Completá anunciante, salidas y duración.'); return; }
   if(sops.length===0){ alert('Seleccioná al menos un soporte.'); return; }
   if(fi&&ff&&parseFecha(fi)>parseFecha(ff)){ alert('La fecha de inicio no puede ser posterior a la de fin.'); return; }
-  const base={ anun, camp:document.getElementById('fCamp').value.trim(), tipoCliente:document.getElementById('fTipoCliente').value, tipo:document.getElementById('fTipo').value, id:document.getElementById('fId').value.trim()||'—', fi, ff, sal, dur };
+  const base={ anun, camp:document.getElementById('fCamp').value.trim(), tipoCliente:document.getElementById('fTipoCliente').value, tipo:document.getElementById('fTipo').value, id:document.getElementById('fId').value.trim()||'—', fi, ff, sal, dur, espacioFijo:document.getElementById('fEspacioFijo').checked };
 
   if(editandoGrupo){
     const gid=editandoGrupo; const existentes=ordenes.filter(o=>o.grupoId===gid).map(o=>o.soporte);
@@ -906,17 +1163,37 @@ function toggleFin(which){
 }
 
 // ══════════════ INIT ══════════════
+function resetTotal(){
+  if(!confirm('Esto borra TODAS las órdenes y empieza desde cero con los datos de Asana. ¿Confirmar?')) return;
+  try{ localStorage.removeItem('tdp_ordenes_v1'); }catch(_){}
+  try{ localStorage.removeItem('tdp_bloques_v1'); }catch(_){}
+  try{ localStorage.removeItem('tdp_bloquesPE_v1'); }catch(_){}
+  ordenes=[]; bloquesPersistentes={}; bloquesPE={};
+  ordenes = JSON.parse(JSON.stringify(DATOS_ASANA));
+  guardar(); invalidarCache(); renderActiva();
+  mostrarEstado('✓ Reset completo — '+new Set(DATOS_ASANA.map(o=>o.grupoId)).size+' órdenes cargadas','ok');
+}
 function cargarDatosAsana(){
-  if(ordenes.length && !confirm('Esto reemplaza las órdenes actuales por los datos reales de la sección Pauta Activada de Asana (25 vigentes + 40 finalizadas). ¿Continuar?')) return;
+  if(ordenes.length && !confirm('Esto reemplaza las órdenes actuales. ¿Continuar?')) return;
   ordenes = JSON.parse(JSON.stringify(DATOS_ASANA));
   bloquesPersistentes = {};
+  bloquesPE = {};
   guardar(); invalidarCache(); renderActiva();
-  mostrarEstado('✓ '+ (new Set(DATOS_ASANA.map(o=>o.grupoId)).size) +' órdenes reales cargadas', 'ok');
+  mostrarEstado('✓ '+ (new Set(DATOS_ASANA.map(o=>o.grupoId)).size) +' órdenes cargadas', 'ok');
 }
 (async()=>{
   initSopSelect();
   cargarLocal();
-  if(ordenes.length===0){ ordenes = JSON.parse(JSON.stringify(DATOS_ASANA)); guardar(); mostrarEstado('✓ Datos reales de Asana cargados','ok'); }
+  // Validar que los datos del localStorage sean compatibles con la versión actual
+  // Si no tienen soporte válido o están vacíos, cargar DATOS_ASANA frescos
+  const soportesValidos = SOPORTES.map(s=>s.nombre);
+  const datosValidos = ordenes.length>0 && ordenes.some(o=>soportesValidos.includes(o.soporte));
+  if(!datosValidos){
+    ordenes = JSON.parse(JSON.stringify(DATOS_ASANA));
+    bloquesPersistentes={}; bloquesPE={};
+    guardar();
+    mostrarEstado('✓ Datos cargados','ok');
+  }
   renderActiva();
 })();
 </script>
